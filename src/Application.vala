@@ -28,16 +28,17 @@ public class Rconnman : Gtk.Application {
     }
     
     protected override void activate () {
-        var main_window = new Gtk.ApplicationWindow (this) {
-            default_height = 800,
-            default_width = 600,
-            title = "Hello World"
-        };
-        
-        var label = new Gtk.Label ("Remote Connection Manager");
-        
-        main_window.add (label);
-        main_window.show_all ();
+        // var app_window = new Gtk.ApplicationWindow (this) {
+        //     default_height = 800,
+        //     default_width = 600,
+        //     title = "Hello World"
+        // };
+        // 
+        // var label = new Gtk.Label ("Remote Connection Manager");
+        // 
+        // app_window.add (label);
+        var app_window = new MainWindow (this);
+        app_window.show_all ();
     }
     
     public static int main (string[] args) {
