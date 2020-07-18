@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2020 Ronnie Jorgensen <rippieuk@outlook.com> -->
+<component type="desktop">
+  <id>com.github.rippieuk.rconnman</id>
+  <metadata_license>CC0</metadata_license>
+  <name>Remote Connection Manager</name>
+  <summary>Something really bad!</summary>
+  <description>
+    <p>There is no main selling point :)</p>
+  </description>
+</component>
