@@ -19,42 +19,48 @@
 * Authored by: Ronnie Jorgensen <rippieuk@outlook.com>
 */
 
-public class Rconnman : Gtk.Application {
-    public Rconnman () {
-        Object (
-            application_id: "com.github.rippieuk.rconnman",
-            flags: ApplicationFlags.FLAGS_NONE
-        );
-    }
+public class Application : Gtk.Application {
     
     public static GLib.Settings settings;
     static construct {
         settings = new GLib.Settings ("com.github.rippieuk.rconnman");
     }
     
+    public Application () {
+        Object (
+            application_id: "com.github.rippieuk.rconnman",
+            flags: ApplicationFlags.FLAGS_NONE
+        );
+        
+    }
+    
     protected override void activate () {
+        
         var app_window = new MainWindow (this);
         
-        int window_x, window_y;
-        var rect = Gtk.Allocation ();
+        var gtk_settings = Gtk.Settings.get_default ();
+        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
+        
+        // int window_x, window_y;
+        // var rect = Gtk.Allocation ();
 
-        settings.get ("window-position", "(ii)", out window_x, out window_y);
-        settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+        // settings.get ("window-position", "(ii)", out window_x, out window_y);
+        // settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
-        if (window_x != -1 ||  window_y != -1) {
-            app_window.move (window_x, window_y);
-        }
+        // if (window_x != -1 ||  window_y != -1) {
+        //     app_window.move (window_x, window_y);
+        // }
 
-        app_window.set_allocation (rect);
+        // app_window.set_allocation (rect);
 
-        if (settings.get_boolean ("window-maximized")) {
-            app_window.maximize ();
-        }
+        // if (settings.get_boolean ("window-maximized")) {
+        //     app_window.maximize ();
+        // }
         
         app_window.show_all ();
     }
     
     public static int main (string[] args) {
-        return new Rconnman ().run (args);
+        return new Application ().run (args);
     }
 }

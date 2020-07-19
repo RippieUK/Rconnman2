@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema path="/com/github/rippieuk/rconnman/" id="com.github.rippieuk.rconnman">
-  
+
+    <key name="dark-style" type="b">
+      <default>false</default>
+      <summary>Prefer dark style</summary>
+      <description>Switches between dark and light style</description>
+    </key>
+
     <key name="window-maximized" type="b">
       <default>false</default>
       <summary>Maximized</summary>
@@ -9,13 +15,13 @@
     </key>
     
     <key name="window-position" type="(ii)">
-      <default>(1024, 750)</default>
+      <default>(-1, -1)</default>
       <summary>Window position</summary>
       <description>Most recent window position (x, y)</description>
     </key>
     
     <key name="window-size" type="(ii)">
-      <default>(-1, -1)</default>
+      <default>(1024, 750)</default>
       <summary>Window size</summary>
       <description>Most recent window size (width, height)</description>
     </key>
