@@ -27,17 +27,30 @@ public class Rconnman : Gtk.Application {
         );
     }
     
+    public static GLib.Settings settings;
+    static construct {
+        settings = new GLib.Settings ("com.github.rippieuk.rconnman");
+    }
+    
     protected override void activate () {
-        // var app_window = new Gtk.ApplicationWindow (this) {
-        //     default_height = 800,
-        //     default_width = 600,
-        //     title = "Hello World"
-        // };
-        // 
-        // var label = new Gtk.Label ("Remote Connection Manager");
-        // 
-        // app_window.add (label);
         var app_window = new MainWindow (this);
+        
+        int window_x, window_y;
+        var rect = Gtk.Allocation ();
+
+        settings.get ("window-position", "(ii)", out window_x, out window_y);
+        settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+
+        if (window_x != -1 ||  window_y != -1) {
+            app_window.move (window_x, window_y);
+        }
+
+        app_window.set_allocation (rect);
+
+        if (settings.get_boolean ("window-maximized")) {
+            app_window.maximize ();
+        }
+        
         app_window.show_all ();
     }
     

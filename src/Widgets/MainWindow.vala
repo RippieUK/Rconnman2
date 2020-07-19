@@ -16,7 +16,7 @@ public class MainWindow : Gtk.Window {
         //add (label);
         add (switch);
         
-        var settings = new GLib.Settings ("com.github.rippieuk.rconnman");
+        //var settings = new GLib.Settings ("com.github.rippieuk.rconnman");
         settings.bind ("useless-setting", switch, "active", GLib.SettingsBindFlags.DEFAULT);
     }
 }
