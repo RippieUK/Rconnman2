@@ -19,3 +19,7 @@ install_data(
     join_paths('data', meson.project_name() + '.appdata.xml'),
     install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
+
+subdir('data')
+
+meson.add_install_script('meson/post_install.py')

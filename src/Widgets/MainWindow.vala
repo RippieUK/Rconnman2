@@ -10,9 +10,13 @@ public class MainWindow : Gtk.Window {
     }
     
     construct {
-        var label = new Gtk.Label ("Remote Connection Manager");
+        var switch = new Gtk.Switch ();
+        //var label = new Gtk.Label ("Remote Connection Manager");
         
-        add (label);
+        //add (label);
+        add (switch);
         
+        var settings = new GLib.Settings ("com.github.rippieuk.rconnman");
+        settings.bind ("useless-setting", switch, "active", GLib.SettingsBindFlags.DEFAULT);
     }
 }
