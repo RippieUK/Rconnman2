@@ -1,7 +1,6 @@
 public class MainWindow : Gtk.ApplicationWindow {
 
     private uint configure_id;
-    public GLib.Settings settings;
     
     public MainWindow (Gtk.Application app) {
         Object (
@@ -14,16 +13,11 @@ public class MainWindow : Gtk.ApplicationWindow {
         title = "Remote Connection Manager";
         window_position = Gtk.WindowPosition.CENTER;
         
-        var settings = new GLib.Settings ("com.github.rippieuk.rconnman");
-        
-        var gtk_settings = Gtk.Settings.get_default ();
-        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
-        
         int window_x, window_y;
         var rect = Gtk.Allocation ();
         
-        settings.get ("window-position", "(ii)", out window_x, out window_y);
-        settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+        Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
+        Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
         
         if (window_x != -1 || window_y != -1) {
@@ -32,15 +26,26 @@ public class MainWindow : Gtk.ApplicationWindow {
         
         set_allocation (rect);
         
-        if (settings.get_boolean ("window-maximized")) {
+        if (Application.settings.get_boolean ("window-maximized")) {
             maximize ();
         }
         
-        var switch = new Gtk.Switch ();
-
-        add (switch);
+        var my_switch = new Gtk.Switch ();
+        Application.settings.bind ("useless-setting", my_switch, "active", GLib.SettingsBindFlags.DEFAULT);
         
-        settings.bind ("useless-setting", switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        var use_dark_theme = new Gtk.Switch ();
+        Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
+        
+        var main_grid = new Gtk.Grid ();
+        
+        main_grid.attach (new Gtk.Label ("Useless Setting"), 0, 0, 1, 1);
+        main_grid.attach (my_switch, 1, 0, 1, 1);
+        
+        main_grid.attach (new Gtk.Label ("Prefer Dark Theme"), 0, 1, 1, 1);
+        main_grid.attach (use_dark_theme, 1, 1, 1, 1);
+        
+        add (main_grid);
+        
     }
     
     public override bool configure_event (Gdk.EventConfigure event) {
@@ -52,17 +57,17 @@ public class MainWindow : Gtk.ApplicationWindow {
         configure_id = 0;
 
         if (is_maximized) {
-            settings.set_boolean ("window-maximized", true);
+            Application.settings.set_boolean ("window-maximized", true);
         } else {
-            settings.set_boolean ("window-maximized", false);
+            Application.settings.set_boolean ("window-maximized", false);
 
             Gdk.Rectangle rect;
             get_allocation (out rect);
-            settings.set ("window-size", "(ii)", rect.width, rect.height);
+            Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
 
             int root_x, root_y;
             get_position (out root_x, out root_y);
-            settings.set ("window-position", "(ii)", root_x, root_y);
+            Application.settings.set ("window-position", "(ii)", root_x, root_y);
         }
 
         return false;

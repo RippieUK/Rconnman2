@@ -21,10 +21,10 @@
 
 public class Application : Gtk.Application {
     
-    // public static GLib.Settings settings;
-    // static construct {
-    //     settings = new GLib.Settings ("com.github.rippieuk.rconnman");
-    // }
+    public static GLib.Settings settings;
+    static construct {
+        settings = new GLib.Settings ("com.github.rippieuk.rconnman");
+    }
     
     public Application () {
         Object (
@@ -36,12 +36,12 @@ public class Application : Gtk.Application {
     
     protected override void activate () {
         
-        var app_window = new MainWindow (this);
+        var main_window = new MainWindow (this);
         
-        //var gtk_settings = Gtk.Settings.get_default ();
-        //gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
+        var gtk_settings = Gtk.Settings.get_default ();
+        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-theme");
         
-        app_window.show_all ();
+        main_window.show_all ();
     }
     
     public static int main (string[] args) {
