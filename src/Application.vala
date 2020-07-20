@@ -38,9 +38,6 @@ public class Application : Gtk.Application {
         
         var main_window = new MainWindow (this);
         
-        var gtk_settings = Gtk.Settings.get_default ();
-        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-theme");
-        
         main_window.show_all ();
     }
     

@@ -16,6 +16,9 @@ public class MainWindow : Gtk.ApplicationWindow {
         int window_x, window_y;
         var rect = Gtk.Allocation ();
         
+        var gtk_settings = Gtk.Settings.get_default ();
+        //gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-theme");
+        
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
         Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
@@ -35,6 +38,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         
         var use_dark_theme = new Gtk.Switch ();
         Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
+        Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
         
         var main_grid = new Gtk.Grid ();
         
