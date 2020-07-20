@@ -21,10 +21,10 @@
 
 public class Application : Gtk.Application {
     
-    public static GLib.Settings settings;
-    static construct {
-        settings = new GLib.Settings ("com.github.rippieuk.rconnman");
-    }
+    // public static GLib.Settings settings;
+    // static construct {
+    //     settings = new GLib.Settings ("com.github.rippieuk.rconnman");
+    // }
     
     public Application () {
         Object (
@@ -38,24 +38,8 @@ public class Application : Gtk.Application {
         
         var app_window = new MainWindow (this);
         
-        var gtk_settings = Gtk.Settings.get_default ();
-        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
-        
-        // int window_x, window_y;
-        // var rect = Gtk.Allocation ();
-
-        // settings.get ("window-position", "(ii)", out window_x, out window_y);
-        // settings.get ("window-size", "(ii)", out rect.width, out rect.height);
-
-        // if (window_x != -1 ||  window_y != -1) {
-        //     app_window.move (window_x, window_y);
-        // }
-
-        // app_window.set_allocation (rect);
-
-        // if (settings.get_boolean ("window-maximized")) {
-        //     app_window.maximize ();
-        // }
+        //var gtk_settings = Gtk.Settings.get_default ();
+        //gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
         
         app_window.show_all ();
     }
