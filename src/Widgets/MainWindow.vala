@@ -20,8 +20,6 @@
 */
 
 public class MainWindow : Gtk.ApplicationWindow {
-
-    private uint configure_id;
     
     public MainWindow (Gtk.Application app) {
         Object (
@@ -31,21 +29,16 @@ public class MainWindow : Gtk.ApplicationWindow {
     
     construct {
     
-        //title = "Remote Connection Manager";
         window_position = Gtk.WindowPosition.CENTER;
         
         int window_x, window_y;
-        var rect = Gtk.Allocation ();
+        int window_h, window_w;
         
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
-        Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
-
+        Application.settings.get ("window-size", "(ii)", out window_w, out window_h);
         
-        if (window_x != -1 || window_y != -1) {
-            move (window_x, window_y);
-        }
-        
-        set_allocation (rect);
+        move (window_x, window_y);
+        resize (window_w, window_h);
         
         if (Application.settings.get_boolean ("window-maximized")) {
             maximize ();
@@ -75,31 +68,16 @@ public class MainWindow : Gtk.ApplicationWindow {
         
     }
     
-    public override bool configure_event (Gdk.EventConfigure event) {
-    if (configure_id != 0) {
-        GLib.Source.remove (configure_id);
-    }
-
-    configure_id = Timeout.add (100, () => {
-        configure_id = 0;
-
-        if (is_maximized) {
-            Application.settings.set_boolean ("window-maximized", true);
-        } else {
-            Application.settings.set_boolean ("window-maximized", false);
-
-            Gdk.Rectangle rect;
-            get_allocation (out rect);
-            Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
-
-            int root_x, root_y;
-            get_position (out root_x, out root_y);
-            Application.settings.set ("window-position", "(ii)", root_x, root_y);
-        }
+    public override bool delete_event (Gdk.EventAny event) {
+        int width, height, x ,y;
+        
+        get_size (out width, out height);
+        Application.settings.set ("window-size", "(ii)", width, height);
+        
+        get_position (out x, out y);
+        Application.settings.set ("window-position", "(ii)", x, y);
 
         return false;
-    });
-
-    return base.configure_event (event);
-    }  
+    }
+      
 }
