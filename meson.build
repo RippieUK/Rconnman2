@@ -4,6 +4,7 @@ executable(
     meson.project_name(),
     'src/Application.vala',
     'src/Widgets/MainWindow.vala',
+    'src/Widgets/HeaderBar.vala',
     dependencies: [
         dependency('gtk+-3.0')
     ],

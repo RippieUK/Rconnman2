@@ -1,3 +1,24 @@
+/*
+* Copyright (c) 2011-2018 Your Organization (https://github.com/RippieUK/RConnman2)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*
+* Authored by: Ronnie Jorgensen <rippieuk@outlook.com>
+*/
+
 public class MainWindow : Gtk.ApplicationWindow {
 
     private uint configure_id;
@@ -10,14 +31,11 @@ public class MainWindow : Gtk.ApplicationWindow {
     
     construct {
     
-        title = "Remote Connection Manager";
+        //title = "Remote Connection Manager";
         window_position = Gtk.WindowPosition.CENTER;
         
         int window_x, window_y;
         var rect = Gtk.Allocation ();
-        
-        var gtk_settings = Gtk.Settings.get_default ();
-        //gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-theme");
         
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
         Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
@@ -33,8 +51,13 @@ public class MainWindow : Gtk.ApplicationWindow {
             maximize ();
         }
         
+        var headerbar = new HeaderBar ();
+        set_titlebar (headerbar);
+        
         var my_switch = new Gtk.Switch ();
         Application.settings.bind ("useless-setting", my_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        
+        var gtk_settings = Gtk.Settings.get_default ();
         
         var use_dark_theme = new Gtk.Switch ();
         Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
