@@ -19,16 +19,17 @@
 * Authored by: Ronnie Jorgensen <rippieuk@outlook.com>
 */
 
-public class Application : Gtk.Application {
+public class RConnMan.Application : Gtk.Application {
+    public const string APPID = "com.github.rippieuk.rconnman";
     
     public static GLib.Settings settings;
     static construct {
-        settings = new GLib.Settings ("com.github.rippieuk.rconnman");
+        settings = new GLib.Settings (APPID);
     }
     
     public Application () {
         Object (
-            application_id: "com.github.rippieuk.rconnman",
+            application_id: APPID,
             flags: ApplicationFlags.FLAGS_NONE
         );
         
@@ -37,11 +38,18 @@ public class Application : Gtk.Application {
     protected override void activate () {
         
         var main_window = new MainWindow (this);
-        
         main_window.show_all ();
+        
+        var provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("/com/github/rippieuk/rconnman/Application.css");
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (),
+            provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
     }
     
-    public static int main (string[] args) {
+    public static int main (string[] args) { // method called main
         return new Application ().run (args);
     }
 }

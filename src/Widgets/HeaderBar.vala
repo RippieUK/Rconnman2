@@ -1,4 +1,4 @@
-public class HeaderBar : Gtk.HeaderBar {
+public class RConnMan.HeaderBar : Gtk.HeaderBar {
     construct {
         set_title ("Remote Connection Manager");
         set_subtitle ("Connect to what?");

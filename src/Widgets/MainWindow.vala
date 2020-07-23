@@ -19,7 +19,7 @@
 * Authored by: Ronnie Jorgensen <rippieuk@outlook.com>
 */
 
-public class MainWindow : Gtk.ApplicationWindow {
+public class RConnMan.MainWindow : Gtk.ApplicationWindow {
     
     public MainWindow (Gtk.Application app) {
         Object (
@@ -56,6 +56,11 @@ public class MainWindow : Gtk.ApplicationWindow {
         Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
         Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
         
+        var my_entry = new Gtk.Entry ();
+        my_entry.max_length = 5;
+        my_entry.max_width_chars = 5;
+        my_entry.width_chars = 5;
+        
         var main_grid = new Gtk.Grid ();
         
         main_grid.attach (new Gtk.Label ("Useless Setting"), 0, 0, 1, 1);
@@ -64,18 +69,31 @@ public class MainWindow : Gtk.ApplicationWindow {
         main_grid.attach (new Gtk.Label ("Prefer Dark Theme"), 0, 1, 1, 1);
         main_grid.attach (use_dark_theme, 1, 1, 1, 1);
         
+        main_grid.attach (new Gtk.Label ("Entry box"), 0, 2, 1, 1);
+        main_grid.attach (my_entry, 1, 2, 1, 1);
+        
+        get_style_context ().add_class ("rounded");
+        
         add (main_grid);
         
     }
     
     public override bool delete_event (Gdk.EventAny event) {
-        int width, height, x ,y;
-        
-        get_size (out width, out height);
-        Application.settings.set ("window-size", "(ii)", width, height);
-        
-        get_position (out x, out y);
-        Application.settings.set ("window-position", "(ii)", x, y);
+    
+        if (is_maximized) {
+            Application.settings.set_boolean ("window-maximized", true);
+        } else {
+            Application.settings.set_boolean ("window-maximized", false);
+            
+            int width, height, x ,y;
+            
+            get_size (out width, out height);
+            Application.settings.set ("window-size", "(ii)", width, height);
+            
+            get_position (out x, out y);
+            Application.settings.set ("window-position", "(ii)", x, y);
+        }
+
 
         return false;
     }
