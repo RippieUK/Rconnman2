@@ -1,10 +1,18 @@
 project('com.github.rippieuk.rconnman', 'vala', 'c')
+gnome = import('gnome')
+
+asresources = gnome.compile_resources(
+  'as-resources', 'data/' + meson.project_name() + '.gresource.xml',
+  source_dir: 'data',
+  c_name: 'as'
+)
 
 executable(
     meson.project_name(),
     'src/Application.vala',
     'src/Widgets/MainWindow.vala',
     'src/Widgets/HeaderBar.vala',
+    asresources,
     dependencies: [
         dependency('gtk+-3.0')
     ],
