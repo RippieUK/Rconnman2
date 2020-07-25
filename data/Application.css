@@ -1,2 +1,7 @@
 @define-color PURPLE #525;
-@define-color colorAccent @PURPLE;
+@define-color colorAccent @ORANGE_500;
+
+
+@define-color colorPrimary @ORANGE_500;
+@define-color textColorPrimaryShadow @ORANGE_500;
+@define-color textColorPrimary #f5f5f5;

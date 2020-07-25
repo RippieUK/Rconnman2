@@ -14,7 +14,8 @@ executable(
     'src/Widgets/HeaderBar.vala',
     asresources,
     dependencies: [
-        dependency('gtk+-3.0')
+        dependency('gtk+-3.0'),
+        dependency('granite')
     ],
     install: true
 )
