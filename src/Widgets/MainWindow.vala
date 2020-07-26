@@ -47,8 +47,8 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         var headerbar = new HeaderBar ();
         set_titlebar (headerbar);
         var header_context = headerbar.get_style_context ();
-        // header_context.add_class ("titlebar");
-        //header_context.add_class ("default-decoration"); // made it thinner
+        header_context.add_class ("titlebar");
+        header_context.add_class ("default-decoration"); // made it thinner
         //header_context.add_class (Gtk.STYLE_CLASS_FLAT); // make the title bar seem to get the same colors as the main window. no horizontal line??
         
         var my_switch = new Gtk.Switch ();
