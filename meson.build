@@ -12,6 +12,7 @@ executable(
     'src/Application.vala',
     'src/Widgets/MainWindow.vala',
     'src/Widgets/HeaderBar.vala',
+    'src/Widgets/Preferences.vala',
     asresources,
     dependencies: [
         dependency('gtk+-3.0'),

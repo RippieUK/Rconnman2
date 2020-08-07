@@ -1,29 +1,11 @@
-/*
-* Copyright (c) 2011-2018 Your Organization (https://github.com/RippieUK/RConnman2)
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation; either
-* version 2 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public
-* License along with this program; if not, write to the
-* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-* Boston, MA 02110-1301 USA
-*
-* Authored by: Ronnie Jorgensen <rippieuk@outlook.com>
-*/
-
 public class RConnMan.MainWindow : Gtk.ApplicationWindow {
+
+    public HeaderBar headerbar;
     
     public MainWindow (Gtk.Application app) {
         Object (
-            application: app
+            application: app,
+            title: "Remote Connection Manager"
         );
     }
     
@@ -44,12 +26,11 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
             maximize ();
         }
         
-        var headerbar = new HeaderBar ();
-        set_titlebar (headerbar);
+        headerbar = new HeaderBar (this);
         var header_context = headerbar.get_style_context ();
         header_context.add_class ("titlebar");
-        header_context.add_class ("default-decoration"); // made it thinner
-        //header_context.add_class (Gtk.STYLE_CLASS_FLAT); // make the title bar seem to get the same colors as the main window. no horizontal line??
+        header_context.add_class ("default-decoration");
+        //header_context.add_class (Gtk.STYLE_CLASS_FLAT);
         
         var my_switch = new Gtk.Switch ();
         Application.settings.bind ("useless-setting", my_switch, "active", GLib.SettingsBindFlags.DEFAULT);
@@ -79,6 +60,8 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         get_style_context ().add_class ("rounded");
         
         add (main_grid);
+        
+        set_titlebar (headerbar);
         
     }
     
