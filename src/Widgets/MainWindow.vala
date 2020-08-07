@@ -41,10 +41,12 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
         Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
         
-        var my_entry = new Gtk.Entry ();
-        my_entry.max_length = 5;
-        my_entry.max_width_chars = 5;
-        my_entry.width_chars = 5;
+        var my_entry = new Gtk.Entry () {
+            max_length = 5,
+            max_width_chars = 5,
+            width_chars = 5
+        };
+
         
         var main_grid = new Gtk.Grid ();
         
