@@ -32,12 +32,7 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         
-        int paned-position;
-        Application.settings.get ("panel-size", "(i)", out paned-position);
-        
-
-        
-
+        int paned_position = Application.settings.get_int ("panel-size");
         
         // var my_switch = new Gtk.Switch ();
         // Application.settings.bind ("useless-setting", my_switch, "active", GLib.SettingsBindFlags.DEFAULT);
@@ -53,16 +48,16 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         
         paned.pack1 (left_label, false, false);
         paned.pack2 (right_label, true, false);
-        paned.set_position(paned-position);
+        paned.set_position(paned_position);
         
         add (paned);
         
-        /* Size of panel */
-        // paned.size_allocate.connect(() => {
-        //     if(paned.get_position() != Application.settings.panel-size) {
-        //         Application.settings.panel-size = paned.get_position();
-        //     }
-        // });
+        /* Size of panel */        
+        paned.size_allocate.connect(() => {
+            if (paned.get_position () != Application.settings.get_int ("panel-size")) {
+                Application.settings.set_int ("panel-size", paned.get_position());
+            }
+        });
 
         // 
         // var main_grid = new Gtk.Grid ();
