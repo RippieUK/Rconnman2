@@ -1,6 +1,4 @@
 public class RConnMan.MainWindow : Gtk.ApplicationWindow {
-
-    public HeaderBar headerbar;
     
     public MainWindow (Gtk.Application app) {
         Object (
@@ -26,44 +24,61 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
             maximize ();
         }
         
-        headerbar = new HeaderBar (this);
-        var header_context = headerbar.get_style_context ();
-        header_context.add_class ("titlebar");
-        header_context.add_class ("default-decoration");
-        //header_context.add_class (Gtk.STYLE_CLASS_FLAT);
+        set_titlebar (new HeaderBar ());
         
-        var my_switch = new Gtk.Switch ();
-        Application.settings.bind ("useless-setting", my_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        var context = get_style_context ();
+        context.add_class ("rounded");
+        context.add_class ("flat");
+
+        var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         
-        var gtk_settings = Gtk.Settings.get_default ();
+        int paned-position;
+        Application.settings.get ("panel-size", "(i)", out paned-position);
         
-        var use_dark_theme = new Gtk.Switch ();
-        Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
-        Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
-        
-        var my_entry = new Gtk.Entry () {
-            max_length = 5,
-            max_width_chars = 5,
-            width_chars = 5
-        };
 
         
-        var main_grid = new Gtk.Grid ();
+
         
-        main_grid.attach (new Gtk.Label ("Useless Setting"), 0, 0, 1, 1);
-        main_grid.attach (my_switch, 1, 0, 1, 1);
+        // var my_switch = new Gtk.Switch ();
+        // Application.settings.bind ("useless-setting", my_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        // 
+        var gtk_settings = Gtk.Settings.get_default ();
+        // 
+        // var use_dark_theme = new Gtk.Switch ();
+        //Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
+        Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
+        // 
+        var left_label = new Gtk.Label ("Left");
+        var right_label = new Gtk.Label ("Right");
         
-        main_grid.attach (new Gtk.Label ("Prefer Dark Theme"), 0, 1, 1, 1);
-        main_grid.attach (use_dark_theme, 1, 1, 1, 1);
+        paned.pack1 (left_label, false, false);
+        paned.pack2 (right_label, true, false);
+        paned.set_position(paned-position);
         
-        main_grid.attach (new Gtk.Label ("Entry box"), 0, 2, 1, 1);
-        main_grid.attach (my_entry, 1, 2, 1, 1);
+        add (paned);
         
-        get_style_context ().add_class ("rounded");
-        
-        add (main_grid);
-        
-        set_titlebar (headerbar);
+        /* Size of panel */
+        // paned.size_allocate.connect(() => {
+        //     if(paned.get_position() != Application.settings.panel-size) {
+        //         Application.settings.panel-size = paned.get_position();
+        //     }
+        // });
+
+        // 
+        // var main_grid = new Gtk.Grid ();
+        // 
+        // main_grid.attach (new Gtk.Label ("Useless Setting"), 0, 0, 1, 1);
+        // main_grid.attach (my_switch, 1, 0, 1, 1);
+        // 
+        // main_grid.attach (new Gtk.Label ("Prefer Dark Theme"), 0, 1, 1, 1);
+        // main_grid.attach (use_dark_theme, 1, 1, 1, 1);
+        // 
+        // main_grid.attach (new Gtk.Label ("Entry box"), 0, 2, 1, 1);
+        // main_grid.attach (my_entry, 1, 2, 1, 1);
+        // 
+        // get_style_context ().add_class ("rounded");
+        // 
+        // add (main_grid);
         
     }
     

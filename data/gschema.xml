@@ -26,6 +26,12 @@
       <description>Most recent window size (width, height)</description>
     </key>
     
+    <key name="panel-size" type="i">
+        <default>180</default>
+        <summary>The saved width of the pages panel.</summary>
+        <description></description>
+    </key>
+    
     <key name="useless-setting" type="b">
       <default>false</default>
       <summary>Useless Setting</summary>

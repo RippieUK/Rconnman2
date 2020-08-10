@@ -1,10 +1,20 @@
 
 public class RConnMan.Preferences : Gtk.Dialog {
 
+    public const int MIN_WIDTH = 420;
+    public const int MIN_HEIGHT = 300;
+
     public Preferences (Gtk.Window? parent) {
         Object (
             title: "Preferences",
-            transient_for: parent
+            transient_for: parent,
+            border_width: 6,
+            deletable: false,
+            destroy_with_parent: true,
+            height_request: MIN_HEIGHT,
+            width_request: MIN_WIDTH,
+            resizable: false,
+            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
         );
     }
 
