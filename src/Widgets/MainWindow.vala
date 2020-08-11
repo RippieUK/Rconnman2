@@ -1,6 +1,6 @@
 public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
-    //public WelcomeView welcome;
+    public WelcomeView welcome;
     
     public MainWindow (Gtk.Application app) {
         Object (
