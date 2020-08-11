@@ -37,17 +37,12 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         
         int paned_position = Application.settings.get_int ("panel-size");
         
-        // var my_switch = new Gtk.Switch ();
-        // Application.settings.bind ("useless-setting", my_switch, "active", GLib.SettingsBindFlags.DEFAULT);
-        // 
+
         var gtk_settings = Gtk.Settings.get_default ();
-        // 
-        // var use_dark_theme = new Gtk.Switch ();
-        //Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
+
         Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
-        // 
+
         var left_label = new Gtk.Label ("Left");
-        var right_label = new Gtk.Label ("Right");
         
         paned.pack1 (left_label, false, false);
         paned.pack2 (welcome, true, false);
@@ -55,29 +50,13 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         
         add (paned);
         
-        /* Size of panel */        
+        /* Size of panel */
         paned.size_allocate.connect(() => {
             if (paned.get_position () != Application.settings.get_int ("panel-size")) {
                 Application.settings.set_int ("panel-size", paned.get_position());
             }
         });
 
-        // 
-        // var main_grid = new Gtk.Grid ();
-        // 
-        // main_grid.attach (new Gtk.Label ("Useless Setting"), 0, 0, 1, 1);
-        // main_grid.attach (my_switch, 1, 0, 1, 1);
-        // 
-        // main_grid.attach (new Gtk.Label ("Prefer Dark Theme"), 0, 1, 1, 1);
-        // main_grid.attach (use_dark_theme, 1, 1, 1, 1);
-        // 
-        // main_grid.attach (new Gtk.Label ("Entry box"), 0, 2, 1, 1);
-        // main_grid.attach (my_entry, 1, 2, 1, 1);
-        // 
-        // get_style_context ().add_class ("rounded");
-        // 
-        // add (main_grid);
-        
     }
     
     public override bool delete_event (Gdk.EventAny event) {

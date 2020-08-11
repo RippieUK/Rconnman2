@@ -1,11 +1,9 @@
 public class RConnMan.HeaderBar : Gtk.HeaderBar {
     
-    construct {
-    
+    construct {   
         var header_context = get_style_context ();
         header_context.add_class ("titlebar");
         header_context.add_class ("default-decoration");
-        //header_context.add_class (Gtk.STYLE_CLASS_FLAT);
         
         has_subtitle = false;
         show_close_button = true;

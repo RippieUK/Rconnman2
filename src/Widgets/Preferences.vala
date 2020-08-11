@@ -21,17 +21,28 @@ public class RConnMan.Preferences : Gtk.Dialog {
     construct {
         set_default_size (400,400);
         
-        var use_dark_theme = new Gtk.Switch ();
-        use_dark_theme.valign = Gtk.Align.CENTER;
-        use_dark_theme.halign = Gtk.Align.START;
-        Application.settings.bind ("dark-theme", use_dark_theme, "active", GLib.SettingsBindFlags.DEFAULT);
+        var prefs_header_label = new Gtk.Label ("Preferences:") {
+            halign = Gtk.Align.START,
+            margin_bottom = 10
+        };
+        prefs_header_label.get_style_context ().add_class ("h3");
+        
+        var use_dark_theme_label = new Gtk.Label ("Dark mode:");
+        var use_dark_theme_switch = new Gtk.Switch () {
+            valign = Gtk.Align.CENTER,
+            halign = Gtk.Align.START
+        };
+
+        Application.settings.bind ("dark-theme", use_dark_theme_switch, "active", GLib.SettingsBindFlags.DEFAULT);
         
         var grid = new Gtk.Grid ();
         grid.margin_top = 0;
         grid.margin = 6;
         grid.column_spacing = 12;
         grid.column_homogeneous = true;
-        grid.attach (use_dark_theme, 0, 1, 1, 1);
+        grid.attach (prefs_header_label, 0, 0, 2, 1);
+        grid.attach (use_dark_theme_label, 0, 1, 1, 1);
+        grid.attach (use_dark_theme_switch, 1, 1, 1, 1);
 
         ((Gtk.Container) get_content_area ()).add (grid);
 
