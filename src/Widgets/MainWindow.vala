@@ -1,4 +1,6 @@
 public class RConnMan.MainWindow : Gtk.ApplicationWindow {
+
+    //public WelcomeView welcome;
     
     public MainWindow (Gtk.Application app) {
         Object (
@@ -8,6 +10,7 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
     }
     
     construct {
+        welcome = new WelcomeView();
     
         window_position = Gtk.WindowPosition.CENTER;
         
@@ -47,7 +50,7 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         var right_label = new Gtk.Label ("Right");
         
         paned.pack1 (left_label, false, false);
-        paned.pack2 (right_label, true, false);
+        paned.pack2 (welcome, true, false);
         paned.set_position(paned_position);
         
         add (paned);
