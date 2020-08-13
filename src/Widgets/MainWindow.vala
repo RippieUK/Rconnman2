@@ -64,7 +64,7 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         win_account_rdp_account1_item.icon = new GLib.ThemedIcon ("avatar-default");
         
         var win_account_rdp_account2_item = new Granite.Widgets.SourceList.Item ("Win Account 2");
-        win_account_rdp_account2_item.icon = new GLib.ThemedIcon ("/com/github/rippieuk/rconnman/data/icons/ssh_protocol_icon.png");
+        win_account_rdp_account2_item.icon = new GLib.ThemedIcon ("ssh_protocol_icon");
         
         win_account_item.add (win_account_rdp_account1_item);
         win_account_item.add (win_account_rdp_account2_item);
