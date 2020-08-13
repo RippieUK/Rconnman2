@@ -2,5 +2,6 @@
 <gresources>
   <gresource prefix="/com/github/rippieuk/rconnman">
     <file alias="Application.css">Application.css</file>
+    <file alias="ssh_protocol_icon.png">icons/ssh_protocol_icon.png</file>
   </gresource>
 </gresources>

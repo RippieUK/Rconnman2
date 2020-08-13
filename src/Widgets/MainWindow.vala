@@ -10,6 +10,7 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
     }
     
     construct {
+        Gtk.IconTheme.get_default ().add_resource_path ("/com/github/rippieuk/rconnman");
         welcome = new WelcomeView();
     
         window_position = Gtk.WindowPosition.CENTER;
@@ -29,7 +30,7 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         
         set_titlebar (new HeaderBar ());
         
-        var context = get_style_context ();
+            var context = get_style_context ();
         context.add_class ("rounded");
         context.add_class ("flat");
 
@@ -44,7 +45,44 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
         var left_label = new Gtk.Label ("Left");
         
-        paned.pack1 (left_label, false, false);
+        /* SourceList Example */
+        var hosts_category = new Granite.Widgets.SourceList.ExpandableItem ("Hosts");
+        var accounts_category = new Granite.Widgets.SourceList.ExpandableItem ("Accounts");
+        
+        var host_item = new Granite.Widgets.SourceList.Item ("Host1");
+        host_item.icon = new ThemedIcon ("computer");
+        
+        // "Libraries" will be the parent category of "Music"
+        hosts_category.add (host_item);
+        
+        // We plan to add sub-items to the store, so let's use an expandable item
+        var win_account_item = new Granite.Widgets.SourceList.ExpandableItem ("Windows");
+        win_account_item.icon = new GLib.ThemedIcon ("system-users");
+        accounts_category.add (win_account_item);
+
+        var win_account_rdp_account1_item = new Granite.Widgets.SourceList.Item ("Win Account 1");
+        win_account_rdp_account1_item.icon = new GLib.ThemedIcon ("avatar-default");
+        
+        var win_account_rdp_account2_item = new Granite.Widgets.SourceList.Item ("Win Account 2");
+        win_account_rdp_account2_item.icon = new GLib.ThemedIcon ("/com/github/rippieuk/rconnman/data/icons/ssh_protocol_icon.png");
+        
+        win_account_item.add (win_account_rdp_account1_item);
+        win_account_item.add (win_account_rdp_account2_item);
+
+        
+        var source_list = new Granite.Widgets.SourceList ();
+        
+        // This will add the main categories (including their children) to the source list. After
+        // having being added to be widget, any other item added to any of these items
+        // (or any other child item in a deeper level) will be automatically added too.
+        // There's no need to deal with the source list widget directly.
+
+        var root = source_list.root;
+
+        root.add (hosts_category);
+        root.add (accounts_category);
+        
+        paned.pack1 (source_list, false, false);
         paned.pack2 (welcome, true, false);
         paned.set_position(paned_position);
         
