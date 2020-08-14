@@ -49,11 +49,19 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         var hosts_category = new Granite.Widgets.SourceList.ExpandableItem ("Hosts");
         var accounts_category = new Granite.Widgets.SourceList.ExpandableItem ("Accounts");
         
+        var win_host_item = new Granite.Widgets.SourceList.ExpandableItem ("Windows");
+        win_host_item.icon = new GLib.ThemedIcon ("rdp_protocol_icon");
+        hosts_category.add (win_host_item);
+        
         var host_item = new Granite.Widgets.SourceList.Item ("Host1");
-        host_item.icon = new ThemedIcon ("computer");
+        host_item.icon = new ThemedIcon ("rdp_protocol_icon");
+        
+        var host_item2 = new Granite.Widgets.SourceList.Item ("Host2");
+        host_item2.icon = new ThemedIcon ("rdp_protocol_icon");
         
         // "Libraries" will be the parent category of "Music"
-        hosts_category.add (host_item);
+        win_host_item.add (host_item);
+        win_host_item.add (host_item2);
         
         // We plan to add sub-items to the store, so let's use an expandable item
         var win_account_item = new Granite.Widgets.SourceList.ExpandableItem ("Windows");
@@ -71,6 +79,13 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
         
         var source_list = new Granite.Widgets.SourceList ();
+        if (Application.settings.get_boolean ("enable-tree-lines")) {
+            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = true;
+        }
+        else {
+            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = false;
+        }
+        
         
         // This will add the main categories (including their children) to the source list. After
         // having being added to be widget, any other item added to any of these items
@@ -79,7 +94,7 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
         var root = source_list.root;
 
-        root.add (hosts_category);
+        root.add (hosts_category);  
         root.add (accounts_category);
         
         paned.pack1 (source_list, false, false);

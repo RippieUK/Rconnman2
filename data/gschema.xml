@@ -7,7 +7,12 @@
       <summary>Prefer dark style</summary>
       <description>Switches between dark and light style</description>
     </key>
-
+    <key name="enable-tree-lines" type="b">
+      <default>false</default>
+      <summary>Enable Tree Lines</summary>
+      <description>Enables tree lines in the left pane</description>
+    </key>
+    
     <key name="window-maximized" type="b">
       <default>false</default>
       <summary>Maximized</summary>

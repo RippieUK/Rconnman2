@@ -32,8 +32,15 @@ public class RConnMan.Preferences : Gtk.Dialog {
             valign = Gtk.Align.CENTER,
             halign = Gtk.Align.START
         };
+        
+        var enable_tree_lines_label = new Gtk.Label ("Enable Tree Lines:");
+        var enable_tree_lines_switch = new Gtk.Switch () {
+            valign = Gtk.Align.CENTER,
+            halign = Gtk.Align.START  
+        };
 
         Application.settings.bind ("dark-theme", use_dark_theme_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        Application.settings.bind ("enable-tree-lines", enable_tree_lines_switch, "active", GLib.SettingsBindFlags.DEFAULT);
         
         var grid = new Gtk.Grid ();
         grid.margin_top = 0;
@@ -43,6 +50,8 @@ public class RConnMan.Preferences : Gtk.Dialog {
         grid.attach (prefs_header_label, 0, 0, 2, 1);
         grid.attach (use_dark_theme_label, 0, 1, 1, 1);
         grid.attach (use_dark_theme_switch, 1, 1, 1, 1);
+        grid.attach (enable_tree_lines_label, 0, 2, 1, 1);
+        grid.attach (enable_tree_lines_switch, 1, 2, 1, 1);
 
         ((Gtk.Container) get_content_area ()).add (grid);
 
