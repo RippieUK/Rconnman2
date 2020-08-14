@@ -109,6 +109,10 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
                 Application.settings.set_int ("panel-size", paned.get_position());
             }
         });
+        
+        Application.settings.changed["enable-tree-lines"].connect (() => {
+            treeview_guiders ();
+        });
 
     }
     
@@ -130,6 +134,15 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
 
         return false;
+    }
+    
+    public void treeview_guiders () {
+        if (Application.settings.get_boolean ("enable-tree-lines")) {
+            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = true;
+        }
+        else {
+            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = false;
+        }
     }
       
 }

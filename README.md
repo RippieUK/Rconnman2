@@ -5,4 +5,4 @@ Remote Connection Manager is my own very first starter project for building an A
 The initial plan is for it to create connections to remote systems using SSH, Telnet and RDP.
 
 ## Screenshots
-![Screenshot](data/rconnman_screenshot.png) 
+![Screenshot](data/rconnman_screenshot.png)
