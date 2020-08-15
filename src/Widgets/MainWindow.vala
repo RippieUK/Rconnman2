@@ -1,6 +1,7 @@
 public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
     public WelcomeView welcome;
+    public LeftPaneView left_pane_view;
     
     public MainWindow (Gtk.Application app) {
         Object (
@@ -18,6 +19,8 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         int window_x, window_y;
         int window_h, window_w;
         
+        var gtk_settings = Gtk.Settings.get_default ();
+        Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
         Application.settings.get ("window-size", "(ii)", out window_w, out window_h);
         
@@ -30,74 +33,16 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
         
         set_titlebar (new HeaderBar ());
         
-            var context = get_style_context ();
+        var context = get_style_context ();
         context.add_class ("rounded");
         context.add_class ("flat");
 
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        
         int paned_position = Application.settings.get_int ("panel-size");
         
-
-        var gtk_settings = Gtk.Settings.get_default ();
-
-        Application.settings.bind ("dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", GLib.SettingsBindFlags.DEFAULT);
-
-        var left_label = new Gtk.Label ("Left");
+        left_pane_view = new LeftPaneView(this);
         
-        /* SourceList Example */
-        var hosts_category = new Granite.Widgets.SourceList.ExpandableItem ("Hosts");
-        var accounts_category = new Granite.Widgets.SourceList.ExpandableItem ("Accounts");
-        
-        var win_host_item = new Granite.Widgets.SourceList.ExpandableItem ("Windows");
-        win_host_item.icon = new GLib.ThemedIcon ("rdp_protocol_icon");
-        hosts_category.add (win_host_item);
-        
-        var host_item = new Granite.Widgets.SourceList.Item ("Host1");
-        host_item.icon = new ThemedIcon ("rdp_protocol_icon");
-        
-        var host_item2 = new Granite.Widgets.SourceList.Item ("Host2");
-        host_item2.icon = new ThemedIcon ("rdp_protocol_icon");
-        
-        // "Libraries" will be the parent category of "Music"
-        win_host_item.add (host_item);
-        win_host_item.add (host_item2);
-        
-        // We plan to add sub-items to the store, so let's use an expandable item
-        var win_account_item = new Granite.Widgets.SourceList.ExpandableItem ("Windows");
-        win_account_item.icon = new GLib.ThemedIcon ("system-users");
-        accounts_category.add (win_account_item);
-
-        var win_account_rdp_account1_item = new Granite.Widgets.SourceList.Item ("Win Account 1");
-        win_account_rdp_account1_item.icon = new GLib.ThemedIcon ("avatar-default");
-        
-        var win_account_rdp_account2_item = new Granite.Widgets.SourceList.Item ("Win Account 2");
-        win_account_rdp_account2_item.icon = new GLib.ThemedIcon ("ssh_protocol_icon");
-        
-        win_account_item.add (win_account_rdp_account1_item);
-        win_account_item.add (win_account_rdp_account2_item);
-
-        
-        var source_list = new Granite.Widgets.SourceList ();
-        if (Application.settings.get_boolean ("enable-tree-lines")) {
-            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = true;
-        }
-        else {
-            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = false;
-        }
-        
-        
-        // This will add the main categories (including their children) to the source list. After
-        // having being added to be widget, any other item added to any of these items
-        // (or any other child item in a deeper level) will be automatically added too.
-        // There's no need to deal with the source list widget directly.
-
-        var root = source_list.root;
-
-        root.add (hosts_category);  
-        root.add (accounts_category);
-        
-        paned.pack1 (source_list, false, false);
+        paned.pack1 (left_pane_view, false, false);
         paned.pack2 (welcome, true, false);
         paned.set_position(paned_position);
         
@@ -108,10 +53,6 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
             if (paned.get_position () != Application.settings.get_int ("panel-size")) {
                 Application.settings.set_int ("panel-size", paned.get_position());
             }
-        });
-        
-        Application.settings.changed["enable-tree-lines"].connect (() => {
-            treeview_guiders ();
         });
 
     }
@@ -134,15 +75,6 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
 
         return false;
-    }
-    
-    public void treeview_guiders () {
-        if (Application.settings.get_boolean ("enable-tree-lines")) {
-            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = true;
-        }
-        else {
-            ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = false;
-        }
     }
       
 }
