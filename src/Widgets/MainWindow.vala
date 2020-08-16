@@ -1,7 +1,6 @@
 public class RConnMan.MainWindow : Gtk.ApplicationWindow {
 
     public WelcomeView welcome;
-    public Granite.Widgets.SourceList source_list; /// Without this one the treeview lines will not work ???
     public LeftPaneView left_pane_view;
     
     public MainWindow (Gtk.Application app) {
