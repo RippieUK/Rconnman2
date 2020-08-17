@@ -5,6 +5,8 @@ public class RConnMan.Application : Gtk.Application {
         settings = new GLib.Settings ("com.github.rippieuk.rconnman");
     }
     
+    public const string APP_VERSION = "0.1";
+    
     public Application () {
         Object (
             application_id: "com.github.rippieuk.rconnman",

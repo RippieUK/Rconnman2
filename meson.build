@@ -14,6 +14,7 @@ executable(
     'src/Widgets/HeaderBar.vala',
     'src/Widgets/Preferences.vala',
     'src/Widgets/LeftPaneView.vala',
+    'src/Widgets/AboutDialog.vala',
     'src/Views/WelcomeView.vala',
     asresources,
     dependencies: [

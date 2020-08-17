@@ -11,9 +11,11 @@ public class RConnMan.HeaderBar : Gtk.HeaderBar {
         get_style_context ().add_class ("default-decoration");
 
         var preferences_menuitem = new Gtk.MenuItem.with_label ("Preferences");
+        var about_menuitem = new Gtk.MenuItem.with_label ("About");
 
         var menu = new Gtk.Menu ();
         menu.append (preferences_menuitem);
+        menu.append (about_menuitem);
         menu.show_all ();
 
         var settings_button = new Gtk.MenuButton ();
@@ -24,6 +26,10 @@ public class RConnMan.HeaderBar : Gtk.HeaderBar {
 
         preferences_menuitem.activate.connect (() => {
             new Preferences (get_toplevel () as Gtk.Window).show_all (); 
+         });
+         
+         about_menuitem.activate.connect (() => {
+            new AboutDialog (get_toplevel () as Gtk.Window).show_all (); 
          });
         
         pack_end (settings_button);
