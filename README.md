@@ -1,7 +1,5 @@
 <p align="center">
-    <img src="data/icons/64/com.github.rippieuk.rconnman.svg" alt="AppIcon" /><
-    <br />
-    App icon Credits: Micah Ilbery @ https://github.com/micahilbery 
+    <img src="data/icons/64/com.github.rippieuk.rconnman.svg" alt="AppIcon" />
 </p>
 
 # Remote Connection Manager
@@ -12,3 +10,6 @@ The initial plan is for it to create connections to remote systems using SSH, Te
 
 ## Screenshots
 ![Screenshot](data/rconnman_screenshot.png)
+
+## Credits
+App icon credits: Micah Ilbery @ https://github.com/micahilbery 
