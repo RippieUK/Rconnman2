@@ -1,8 +1,8 @@
-# Remote Connection Manager
-
 <p align="center">
     <img src="data/icons/128/com.github.rippieuk.rconnman.svg" alt="AppIcon" />
 </p>
+
+# Remote Connection Manager
 
 Remote Connection Manager is my own very first starter project for building an App for the Elementary OS. 
 
