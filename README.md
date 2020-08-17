@@ -1,5 +1,7 @@
 <p align="center">
-    <img src="data/icons/128/com.github.rippieuk.rconnman.svg" alt="AppIcon" />
+    <img src="data/icons/64/com.github.rippieuk.rconnman.svg" alt="AppIcon" /><
+    <br />
+    App icon Credits: Micah Ilbery @ https://github.com/micahilbery 
 </p>
 
 # Remote Connection Manager
