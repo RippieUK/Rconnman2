@@ -1,0 +1,25 @@
+{
+    "hosts": [
+        {
+            "name": "Host 1",
+            "description": "Random host",
+            "group": "",
+            "username": "admin1",
+            "password": "passwordhash"
+        },
+        {
+            "name": "Host 2",
+            "description": "Another random host",
+            "group": "RDP",
+            "username": "admin1",
+            "password": "passwordHash" 
+        }
+        {
+            "name": "Host 3",
+            "description": "Random host 3",
+            "group": "RDP",
+            "username": "admin1",
+            "password": "passwordhash"
+        },
+    ]
+}
