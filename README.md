@@ -12,4 +12,6 @@ The initial plan is for it to create connections to remote systems using SSH, Te
 ![Screenshot](data/rconnman_screenshot.png)
 
 ## Credits
+
+Vala teacher: David Hewitt @ https://github.com/davidmhewitt
 App icon credits: Micah Ilbery @ https://github.com/micahilbery 
