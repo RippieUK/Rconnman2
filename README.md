@@ -14,4 +14,5 @@ The initial plan is for it to create connections to remote systems using SSH, Te
 ## Credits
 
 Vala teacher: David Hewitt @ https://github.com/davidmhewitt
+<br />
 App icon credits: Micah Ilbery @ https://github.com/micahilbery 
