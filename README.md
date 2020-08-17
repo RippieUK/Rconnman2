@@ -11,7 +11,26 @@ The initial plan is for it to create connections to remote systems using SSH, Te
 ## Screenshots
 ![Screenshot](data/rconnman_screenshot.png)
 
-## Credits
+## Developing and Building
+
+You will need the following dependencies if you want to hack away:
+
+* libgranite-dev
+* libgtk-3-dev
+* meson
+* valac
+
+Run `meson build` to configure the build environment
+
+    meson build --prefix=/usr
+    cd build
+
+To install, use `ninja install`, then execute with `com.github.rippieuk.rconnman`
+
+    sudo ninja install
+    com.github.rippieuk.rconnman
+
+## Credits where credits due
 
 Vala teacher: David Hewitt @ https://github.com/davidmhewitt
 <br />

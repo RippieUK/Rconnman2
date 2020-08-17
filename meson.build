@@ -15,7 +15,7 @@ executable(
     'src/Widgets/Preferences.vala',
     'src/Widgets/LeftPaneView.vala',
     'src/Widgets/AboutDialog.vala',
-    'src/Views/WelcomeView.vala',
+    'src/Widgets/WelcomeView.vala',
     asresources,
     dependencies: [
         dependency('gtk+-3.0'),
