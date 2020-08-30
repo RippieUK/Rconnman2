@@ -1,8 +1,8 @@
-public class RConnMan.LeftPaneView : Gtk.Frame {
+public class RConnMan.Sidebar : Gtk.Frame {
     public MainWindow window { get; construct; }
     public Granite.Widgets.SourceList source_list;
     
-    public LeftPaneView (MainWindow window) {
+    public Sidebar (MainWindow window) {
         Object (window : window);
     }
     

@@ -3,7 +3,7 @@
   <schema path="/com/github/rippieuk/rconnman/" id="com.github.rippieuk.rconnman">
 
     <key name="dark-theme" type="b">
-      <default>false</default>
+      <default>true</default>
       <summary>Prefer dark style</summary>
       <description>Switches between dark and light style</description>
     </key>

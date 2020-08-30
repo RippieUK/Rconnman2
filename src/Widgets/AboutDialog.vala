@@ -12,7 +12,7 @@ public class RConnMan.AboutDialog : Gtk.AboutDialog {
         program_name = "Remote Connection Manager for Elemantary OS";
         comments = "Connect to your remote systems";
         copyright = "Copyright © 2020 Ronnie Jorgensen";
-        version = @"v$(Application.APP_VERSION)";
+        version = @"v$(Application.APP_VERSION)"; /* Strings prefixed with '@' are string templates. They can evaluate embedded variables and expressions prefixed with '$':  */
         license = """Copyright (c) 2020 Ronnie Jorgensen (https://github.com/RippieUK)
 
 This program is free software; you can redistribute it and/or
@@ -42,4 +42,4 @@ Authored by: Ronnie Jorgensen <rippieuk@outlook.com>""";
            } 
         });
     }
-}
+}	
