@@ -2,8 +2,8 @@ public class RConnMan.Sidebar : Gtk.Frame {
     public MainWindow window { get; construct; }
     public Granite.Widgets.SourceList source_list;
     
-    public Sidebar (MainWindow window) {
-        Object (window : window);
+    public Sidebar (MainWindow _window) {
+        Object (window : _window);
     }
     
     construct {
@@ -59,6 +59,13 @@ public class RConnMan.Sidebar : Gtk.Frame {
         Application.settings.changed["enable-tree-lines"].connect (() => {
             treeview_guiders ();
         });
+
+        //  host_item.activated.connect (() => {
+        //      window.content_stack.visible_child = winddow.welcome_view;
+        //      //toolbar.title = app.app_cmd_name;
+        //      //toolbar.document_available (false);
+        //      //set_widgets_sensitive (false);
+        //  });
     }
     
     public void treeview_guiders () {
@@ -69,4 +76,6 @@ public class RConnMan.Sidebar : Gtk.Frame {
             ((Gtk.TreeView) source_list.get_child ()).enable_tree_lines = false;
         }
     }
+
+
 }

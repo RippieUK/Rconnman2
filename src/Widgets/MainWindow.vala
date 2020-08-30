@@ -82,12 +82,12 @@ public class RConnMan.MainWindow : Gtk.ApplicationWindow {
             }
         });
 
-        sidebar.host_item.activated.connect (() => {
-            content_stack.visible_child = welcome_view;
-            //toolbar.title = app.app_cmd_name;
-            //toolbar.document_available (false);
-            //set_widgets_sensitive (false);
-        });
+        //  Sidebar.host_item.activated.connect (() => {
+        //      content_stack.visible_child = welcome_view;
+        //      //toolbar.title = app.app_cmd_name;
+        //      //toolbar.document_available (false);
+        //      //set_widgets_sensitive (false);
+        //  });
 
         //  main_view.tab_added.connect (() => {
         //      content_stack.visible_child = view_grid;
