@@ -1,9 +1,14 @@
 public class RConnMan.Application : Gtk.Application {
     
     public static GLib.Settings settings;
+    public static HostConfig host_config;
+
     static construct {
         settings = new GLib.Settings ("com.github.rippieuk.rconnman");
+        host_config = new HostConfig ();
     }
+
+    
     
     public const string APP_VERSION = "0.1";
     
@@ -16,7 +21,7 @@ public class RConnMan.Application : Gtk.Application {
     }
     
     protected override void activate () {
-        
+
         var main_window = new MainWindow (this);
         main_window.show_all ();
         

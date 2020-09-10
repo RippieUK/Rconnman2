@@ -17,6 +17,7 @@ executable(
     'src/Widgets/AboutDialog.vala',
     'src/Widgets/WelcomeView.vala',
     'src/Widgets/MainView.vala',
+    'src/HostConfig.vala',
     asresources,
     dependencies: [
         dependency('gtk+-3.0'),

@@ -59,13 +59,6 @@ public class RConnMan.Sidebar : Gtk.Frame {
         Application.settings.changed["enable-tree-lines"].connect (() => {
             treeview_guiders ();
         });
-
-        //  host_item.activated.connect (() => {
-        //      window.content_stack.visible_child = winddow.welcome_view;
-        //      //toolbar.title = app.app_cmd_name;
-        //      //toolbar.document_available (false);
-        //      //set_widgets_sensitive (false);
-        //  });
     }
     
     public void treeview_guiders () {
