@@ -19,14 +19,14 @@ public class HostConfig : GLib.Object {
             catch (Error e) {
                 print ("Error: %s\n", e.message);
 
-                var message_dialog = new Granite.MessageDialog.with_image_from_icon_name (
-                    "Unable to create file!",
-                    "The error is: %s".printf (e.message),
-                    "applications-development",
-                    Gtk.ButtonsType.CLOSE
-                 );
+                //  var message_dialog = new Granite.MessageDialog.with_image_from_icon_name (
+                //      "Unable to create file!",
+                //      "The error is: %s".printf (e.message),
+                //      "applications-development",
+                //      Gtk.ButtonsType.CLOSE
+                //   );
 
-                 message_dialog.run ();
+                //   message_dialog.run ();
             }
         }
     }
